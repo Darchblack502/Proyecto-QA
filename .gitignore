@@ -1,0 +1,7 @@
+# Entornos virtuales
+venv/
+__pycache__/
+
+# Reportes y logs
+*.log
+.pytest_cache/
