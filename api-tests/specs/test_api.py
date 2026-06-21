@@ -9,8 +9,8 @@ def test_crear_reserva_exitosa():
     # Creamos un payload dinámico generando un precio aleatorio basado en el tiempo.
     # Cumple con el requisito: "Peticiones Mutables (POST/PUT): Envio de payloads dinámicos en formato JSON"
     payload = {
-        "firstname" : "Juan",
-        "lastname" : "QA",
+        "firstname" : "Juan Felipe",
+        "lastname" : "Muñoz Jimenez",
         "totalprice" : int(time.time() % 1000), 
         "depositpaid" : True,
         "bookingdates" : {
@@ -60,3 +60,7 @@ def test_crear_reserva_exitosa():
     # C. Validación de Contrato (JSON Schema) 
     data = response.json()
     validate(instance=data, schema=schema_esperado) # Si el esquema no coincide, pytest fallará automáticamente
+
+    print("\n--- RESPUESTA DE LA API ---")
+    print(response.json())
+    print("---------------------------\n")
