@@ -33,8 +33,18 @@ def test_login_invalido(driver):
     
     # Ejecutamos el flujo
     login_page.ir_a_login()
-    login_page.hacer_login("juan_qa", "clave_equivocada")
+    login_page.hacer_login("Juan Muñoz", "clave_equivocada")
     
     # Aserción: Validamos el manejo de credenciales inválidas
     error_texto = login_page.obtener_mensaje_error()
     assert "Provided credentials do not match" in error_texto, "El mensaje de error de login fallido no es el esperado"
+
+def test_login_exitoso(driver):
+    login_page = LoginPage(driver)
+    
+    # Ejecutamos el flujo
+    login_page.ir_a_login()
+    login_page.hacer_login("bob@example.com", "10203040")
+    
+    # Aserción: Validamos el cambio de estado (Aparece Log Out en el menú)
+    assert login_page.verificar_login_exitoso(), "El inicio de sesión exitoso falló"

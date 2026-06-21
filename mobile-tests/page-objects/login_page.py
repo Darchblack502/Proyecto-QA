@@ -11,6 +11,7 @@ class LoginPage:
     # 1. SELECTORES (Usamos accessibility_id para evitar flakiness, como exige la prueba)
     MENU_HAMBURGUESA = (AppiumBy.ACCESSIBILITY_ID, "open menu")
     OPCION_LOGIN_MENU = (AppiumBy.ACCESSIBILITY_ID, "menu item log in")
+    OPCION_LOGOUT_MENU = (AppiumBy.ACCESSIBILITY_ID, "menu item log out")
     CAMPO_USUARIO = (AppiumBy.ACCESSIBILITY_ID, "Username input field")
     CAMPO_PASSWORD = (AppiumBy.ACCESSIBILITY_ID, "Password input field")
     BOTON_LOGIN = (AppiumBy.ACCESSIBILITY_ID, "Login button")
@@ -30,3 +31,9 @@ class LoginPage:
 
     def obtener_mensaje_error(self):
         return self.wait.until(EC.visibility_of_element_located(self.MENSAJE_ERROR)).text
+
+    def verificar_login_exitoso(self):
+        # Abrimos el menú de nuevo para buscar la opción de cerrar sesión
+        self.wait.until(EC.element_to_be_clickable(self.MENU_HAMBURGUESA)).click()
+        elemento_logout = self.wait.until(EC.visibility_of_element_located(self.OPCION_LOGOUT_MENU))
+        return elemento_logout.is_displayed()
