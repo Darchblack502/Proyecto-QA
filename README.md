@@ -27,7 +27,9 @@ PROYECTO QA/
 │   │   └── login_page.py
 │   └── specs/              
 │       └── test_login.py   # Scripts de pruebas móviles
+├── .gitignore              # Archivos y carpetas ignorados por Git
 ├── docker-compose.yml      # Configuración del broker local de Kafka
+├── pytest.ini              # Configuración global y silenciador de advertencias
 ├── requirements.txt        # Dependencias del proyecto
 ├── README.md               # Documentación principal
 └── AI_USAGE.md             # Declaración de uso de Inteligencia Artificial
