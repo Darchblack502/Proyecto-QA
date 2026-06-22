@@ -61,6 +61,7 @@ def test_crear_reserva_exitosa():
     data = response.json()
     validate(instance=data, schema=schema_esperado) # Si el esquema no coincide, pytest fallará automáticamente
 
+    # D. Impresión de la Respuesta (para visibilidad en el reporte)
     print("\n--- RESPUESTA DE LA API ---")
     print(response.json())
     print("---------------------------\n")

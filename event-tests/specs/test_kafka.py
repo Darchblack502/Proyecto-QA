@@ -2,7 +2,7 @@ import json
 import pytest
 from kafka import KafkaProducer, KafkaConsumer
 
-# Configuración del servidor Kafka (La llenaremos en el paso 2)
+# Configuración del servidor Kafka y el tópico que usaremos para la prueba (ajusta según tu entorno local)
 KAFKA_BROKER = 'localhost:9092'
 TOPIC_NAME = 'gps-raw-events'
 
