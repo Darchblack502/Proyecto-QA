@@ -48,22 +48,38 @@ PROYECTO QA/
    venv\Scripts\activate
    ```
 
-3. **Instalar dependencias:**
+3. **Instalar dependencias de Python:**
    ```bash
    pip install -r requirements.txt
    ```
+
+4. **Configuración de Android Studio, Appium y SDK:**
+   * Descargar e instalar **[Android Studio](https://developer.android.com/studio)**. Esto es necesario para obtener las herramientas del Android SDK y poder gestionar emuladores virtuales.
+   * Para ejecutar las pruebas móviles, es necesario contar con Node.js instalado para configurar el servidor de Appium y su driver:
+   ```bash
+   npm install -g appium
+   appium driver install uiautomator2
+   ```
+   * **Configurar Variable de Entorno (Windows):**
+     * Ir a las variables de entorno del sistema.
+     * Crear una nueva variable llamada `ANDROID_HOME`.
+     * El valor debe apuntar a la ruta de tu SDK de Android. (Ejemplo: `C:\Users\<Tu_Usuario>\AppData\Local\Android\Sdk`).
 
 ## 🚀 Ejecución de Pruebas
 
 ### 1. Pruebas de API
 Para ejecutar exclusivamente los scripts que validan los endpoints y las respuestas HTTP:
 ```bash
-python -m pytest api-tests/ -v
+python -m pytest api-tests/ -v -s
 ```
 
 ### 2. Pruebas Móviles (Android)
-**Requisitos previos:** * Tener un emulador de Android activo o dispositivo físico conectado (con las opciones de desarrollador habilitadas).
-* Tener Appium Server ejecutándose en el puerto `4723`.
+**Requisitos previos:** * **Conexión al servidor de Appium:** Es obligatorio tener Appium Server ejecutándose de fondo en el puerto `4723`. Se recomienda abrir una terminal o consola independiente y ejecutar el comando `appium` dejándola abierta durante toda la prueba.
+* **Si usas un dispositivo físico:**
+  * Tener el **Modo Desarrollador** activo.
+  * Tener la **Depuración por USB** activada.
+  * Mantener el dispositivo conectado y desbloqueado.
+* **Si usas un emulador:** Asegurarse de que esté encendido y en la pantalla de inicio.
 
 ```bash
 python -m pytest mobile-tests/ -v
@@ -87,5 +103,5 @@ Se implementó la validación del flujo de telemetría simulando el envío y rec
 ### 4. Ejecución Total (Suite Completa)
 Para ejecutar todas las pruebas del proyecto simultáneamente (API, Mobile y Eventos):
 ```bash
-python -m pytest -v
+python -m pytest -v -s
 ```
